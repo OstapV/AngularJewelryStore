@@ -1,0 +1,16 @@
+.globalError {
+    height: 50px;
+    display: flex;
+    background-color: rgba(255, 0, 0, 0.756);
+    color: white;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnError {
+    top: 10px;
+    right: 50px;
+    position: absolute;
+    border-radius: 50px;
+}

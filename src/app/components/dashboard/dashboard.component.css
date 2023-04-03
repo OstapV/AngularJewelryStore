@@ -1,0 +1,17 @@
+.props {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.props input {
+    padding-left: 10px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+.container-fluid {
+    font-size: 15px;
+}
+

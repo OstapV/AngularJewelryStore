@@ -1,0 +1,105 @@
+<div class="container-fluid">
+    <div class="props">
+    <input type="text" placeholder="Filter salers" [(ngModel)]="term" appFocusDirective>
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addSaler">Add new
+        saler</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addSaler" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Saler</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form [formGroup]="salerDetails">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name:</label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Is Manager?" class="form-label">Is Manager:</label>
+                            <select class="form-select" formControlName="isManager" aria-label="Is Manager?">
+                                <option value="true">True</option>
+                                <option value="false" selected>False</option>
+                            </select>
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                (click)="addSaler()">Add saler</button>
+                        </div>
+                    </form>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Put Customer Modal -->
+    <div class="modal fade" id="editSaler" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Saler</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form [formGroup]="salerDetails">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Name:</label>
+                            <input type="text" formControlName="name" class="form-control" id="name"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <select class="form-select" formControlName="isManager" aria-label="Is Manager?">
+                            <option value="true">True</option>
+                            <option value="false" selected>False</option>
+                        </select>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal"
+                                (click)="updateSaler()">Update</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">IsManager</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let saler of salerList | filter : term">
+                <td>{{saler.id}}</td>
+                <td>{{saler.name}}</td>
+                <td>{{saler.isManager}}</td>
+                <td>
+                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+                        data-bs-target="#editSaler" (click)="editSaler(saler)">Edit</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteSaler(saler)">Delete</button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+
+</div>

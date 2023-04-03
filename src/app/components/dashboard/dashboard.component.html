@@ -1,0 +1,107 @@
+
+<div class="container-fluid">
+  <div class="props">
+  <input type="text" placeholder="Filter customers" [(ngModel)]="term" appFocusDirective>
+    <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#addCustomer">Add new
+        customer</button>
+      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Customer</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+
+                    <form [formGroup]="customerDetails">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Username:</label>
+                            <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email:</label>
+                            <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password:</label>
+                            <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="addCustomer()">Add customer</button>
+                        </div>
+                    </form>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+  
+  <!-- Put Customer Modal -->
+  <div class="modal fade" id="editCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Customer</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <form [formGroup]="customerDetails">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username:</label>
+                    <input type="text" formControlName="username" class="form-control" id="username" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email:</label>
+                    <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password:</label>
+                    <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal" (click)="updateCustomer()">Update</button>
+                </div>
+            </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col" >Password</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let customer of customerList | filterCustomers : term">
+            <td>{{customer.id}}</td>
+            <td>{{customer.username}}</td>
+            <td>{{customer.email}}</td>
+            <td>{{customer.password}}</td>
+            <td>
+                <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#editCustomer" (click)="editCustomer(customer)" >Edit</button>
+                <button type="button" class="btn btn-outline-danger" (click)="deleteCustomer(customer)">Delete</button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+
+</div>

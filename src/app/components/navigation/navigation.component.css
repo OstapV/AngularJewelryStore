@@ -1,0 +1,22 @@
+.navigation {
+    position: relative;
+    color: white;
+    padding: 20px;
+    top: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: blue;
+}
+
+.firstLink {
+    margin-right: 30px;
+}
+
+.navigation span a {
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
